@@ -11,6 +11,7 @@ from user.models import User
 
 
 # SELECT * FROM shop_store
+
 class StoreView(APIView):
 
     def get(self, request):
