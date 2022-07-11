@@ -9,6 +9,10 @@ from user.models import UserAddress
 
 
 # Create your views here.
+
+# SELECT * FROM user_useraddress WHERE id == %s
+# SELECT * FROM shop_storeproduct WHERE id == %s
+
 class OrderView(APIView):
     def post(self, request):
         data = request.data
