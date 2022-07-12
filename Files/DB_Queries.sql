@@ -103,3 +103,33 @@ CREATE TABLE PROORDER
   FOREIGN KEY OrderID REFERENCES ORDER(OrderID),
   PRIMARY KEY ProductID, OrderID,
 ); 
+
+
+
+SELECT * FROM shop_store
+
+SELECT * FROM shop_store WHERE name == %s
+SELECT * FROM shop_storeproduct WHERE store_id == %s
+
+SELECT * FROM shop_product WHERE name == %s
+
+SELECT * FROM shop_product ORDER BY price
+SELECT * FROM shop_product ORDER BY price DESC
+SELECT * FROM shop_product ORDER BY rate DESC
+SELECT * FROM shop_product ORDER BY date
+SELECT * FROM shop_product
+
+SELECT * FROM shop_product WHERE name == %s
+SELECT * FROM shop_review WHERE product_id == %s
+SELECT * FROM user_user WHERE id == %s
+SELECT * FROM shop_product WHERE name == %s
+SELECT * FROM shop_review WHERE product_id == %s
+
+SELECT * FROM shop_category
+
+SELECT * FROM shop_category WHERE name == %s
+SELECT * FROM shop_productcategory WHERE category_id == %s
+
+SELECT * FROM user_useraddress WHERE id == %s
+SELECT * FROM shop_storeproduct WHERE id == %s
+
