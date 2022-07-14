@@ -8,10 +8,6 @@ from user.models import User
 
 
 # Create your views here.
-
-
-# SELECT * FROM shop_store
-
 class StoreView(APIView):
 
     def get(self, request):
@@ -20,8 +16,6 @@ class StoreView(APIView):
         return Response(ser.data, status=status.HTTP_200_OK)
 
 
-# SELECT * FROM shop_store WHERE name == %s
-# SELECT * FROM shop_storeproduct WHERE store_id == %s
 class StoreProductsView(APIView):
 
     def get(self, request, store_name):
@@ -40,7 +34,6 @@ class StoreProductsView(APIView):
         return Response(response_data, status=status.HTTP_200_OK)
 
 
-# SELECT * FROM shop_product WHERE name == %s
 class ProductView(APIView):
 
     def get(self, request, product_name):
@@ -52,11 +45,7 @@ class ProductView(APIView):
         ser = ProductSerializer(product)
         return Response(ser.data, status=status.HTTP_200_OK)
 
-# SELECT * FROM shop_product ORDER BY price
-# SELECT * FROM shop_product ORDER BY price DESC
-# SELECT * FROM shop_product ORDER BY rate DESC
-# SELECT * FROM shop_product ORDER BY date
-# SELECT * FROM shop_product
+
 class ProductSortView(APIView):
     SORT_TYPES = ('ascending price', 'descending price', 'rate', 'date')
 
@@ -84,11 +73,6 @@ class ProductSortView(APIView):
         return Response(ser.data, status=status.HTTP_200_OK)
 
 
-# SELECT * FROM shop_product WHERE name == %s
-# SELECT * FROM shop_review WHERE product_id == %s
-# SELECT * FROM user_user WHERE id == %s
-# SELECT * FROM shop_product WHERE name == %s
-# SELECT * FROM shop_review WHERE product_id == %s
 class ProductReviewView(APIView):
 
     def get(self, request, product_name):
@@ -107,7 +91,7 @@ class ProductReviewView(APIView):
         rate = data.get('rate')
         user_id = data.get('user')
 
-        if rate is None or review_description is None or user_id is None :
+        if rate is None or review_description is None or user_id is None:
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
         if rate < 1 or rate > 5:
@@ -136,7 +120,6 @@ class ProductReviewView(APIView):
         return Response(ser.data, status=status.HTTP_201_CREATED)
 
 
-# SELECT * FROM shop_category
 class CategoryView(APIView):
     def get(self, request):
         categories = Category.objects.raw('SELECT * FROM shop_category')
@@ -144,8 +127,6 @@ class CategoryView(APIView):
         return Response(ser.data, status=status.HTTP_200_OK)
 
 
-# SELECT * FROM shop_category WHERE name == %s
-# SELECT * FROM shop_productcategory WHERE category_id == %s
 class CategoryProductView(APIView):
     def get(self, request, category_name):
         try:
