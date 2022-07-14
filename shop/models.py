@@ -9,8 +9,6 @@ from user.models import User
 #StoreName VARCHAR(40) NOT NULL,
 #PRIMARY KEY (StoreID),
 #);
-
-
 class Store(models.Model):
     id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     name = models.CharField(max_length=50)
@@ -26,8 +24,6 @@ class Store(models.Model):
 #  DateAdded DATE,
 #  PRIMARY KEY (ProductID)
 #);
-
-
 class Product(models.Model):
     id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     name = models.CharField(max_length=100)
@@ -45,8 +41,6 @@ class Product(models.Model):
 #  FOREIGN KEY StoreID REFERENCES STORE(StoreID),
 #  PRIMARY KEY ProductID, StoreID,
 #);
-
-
 class StoreProduct(models.Model):
     id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     store = models.ForeignKey(Store, on_delete=models.CASCADE)
@@ -64,8 +58,6 @@ class StoreProduct(models.Model):
 #  FOREIGN KEY UserID REFERENCES USER(UserID),
 #  FOREIGN KEY ProductID REFERENCES PRODUCT(ProductID),
 #);
-
-
 class Review(models.Model):
     id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
@@ -79,8 +71,6 @@ class Review(models.Model):
 #  CategoryName VARCHAR(20) NOT NULL,
 #  PRIMARY KEY (CategoryID),
 #);
-
-
 class Category(models.Model):
     id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     name = models.CharField(max_length=30)
@@ -94,8 +84,6 @@ class Category(models.Model):
 #  FOREIGN KEY CategoryID REFERENCES CATEGORY(CategoryID),
 #  PRIMARY KEY ProductID, CategoryID,
 #);
-
-
 class ProductCategory(models.Model):
     id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
