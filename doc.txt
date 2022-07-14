@@ -1,0 +1,93 @@
+// list stores		GET
+url: store/
+
+
+// store and products		GET
+url: store/<store_name>/
+
+
+// list of products		GET
+url: product/
+url: product/?sort=(ascending price, descending price, rate, date)
+
+
+// product		GET
+url: product/<product_name>/
+
+
+// add review		GET/POST
+url: product/<product_name>/review
+data = 
+{
+"user": 2,
+"rate": 4,
+"description": ""
+}
+
+
+
+
+// order		POST
+url: order/
+options for delivery method:         // ("PT", "SP", "TP")
+data =
+{
+"customer_address": 2,
+"delivery_method": "TP",
+"order_items": [
+{
+"store_product": 4,
+"count": 2
+},
+{
+"store_product": 5,
+"count": 1
+}
+]
+}
+
+// all orders		GET
+url: order/
+
+// all customer orders		GET
+url: order/?user_id=3
+
+
+
+// list of categories		GET
+url: category/
+
+
+// category products		GET
+url: category/<category_name>/
+
+
+
+// signup       POST
+url: user/signup/
+data =
+{
+"username": "nir",
+"password": "niR123",
+"phone": "09364996080",
+"firstname": "nirvana",
+"lastname": "niroomand"
+}
+
+
+// login        POST
+url: user/login/
+data =
+{
+"username": "niroo",
+"password": "test"
+}
+
+
+{
+"username": "kamalXX",
+"password": "komAL4",
+"phone": "09171234567",
+"firstname": "kamal",
+"lastname": "kamali"
+}
