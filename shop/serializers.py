@@ -27,6 +27,7 @@ class ReviewSerializer(ModelSerializer):
     class Meta:
         model = Review
         fields = '__all__'
+        depth = 2
 
 
 class CategorySerializer(ModelSerializer):
