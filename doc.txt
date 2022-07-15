@@ -11,6 +11,10 @@ url: product/
 url: product/?sort=(ascending price, descending price, rate, date)
 
 
+// list of store products		GET
+url: store-product/
+
+
 // product		GET
 url: product/<product_name>/
 

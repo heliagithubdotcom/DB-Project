@@ -3,7 +3,8 @@ from rest_framework.response import Response
 from rest_framework import status
 
 from .models import Store, StoreProduct, Product, Review, Category, ProductCategory
-from .serializers import StoreSerializer, StoreProductSerializer, ProductSerializer, ReviewSerializer, CategorySerializer
+from .serializers import StoreSerializer, StoreProductSerializer, ProductSerializer, ReviewSerializer, \
+    CategorySerializer, StoreProductDeepSerializer
 from user.models import User
 
 
@@ -73,6 +74,13 @@ class ProductSortView(APIView):
         return Response(ser.data, status=status.HTTP_200_OK)
 
 
+class ProductStoreView(APIView):
+    def get(self, request):
+        store_products = StoreProduct.objects.raw('SELECT * FROM shop_storeproduct')
+        ser = StoreProductDeepSerializer(store_products, many=True)
+        return Response(ser.data, status=status.HTTP_200_OK)
+
+
 class ProductReviewView(APIView):
 
     def get(self, request, product_name):
@@ -100,13 +108,13 @@ class ProductReviewView(APIView):
         try:
             user = User.objects.raw('SELECT * FROM user_user WHERE id == %s', [user_id])[0]
         except IndexError:
-            return Response(status=status.HTTP_404_NOT_FOUND)
+            return Response({'message': "user doesn't exist"}, status=status.HTTP_404_NOT_FOUND)
 
         try:
             product = Product.objects.raw('SELECT * FROM shop_product WHERE name == %s', [product_name])[0]
             reviews_count = len(Review.objects.raw('SELECT * FROM shop_review WHERE product_id == %s', [product.id]))
         except IndexError:
-            return Response(status=status.HTTP_404_NOT_FOUND)
+            return Response({'message': "product not found"}, status=status.HTTP_404_NOT_FOUND)
 
         review = Review.objects.create(user=user, product=product, description=review_description, rate=rate)
         
