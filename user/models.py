@@ -22,6 +22,10 @@ class User(models.Model):
     lastname = models.CharField(max_length=40)
     phone = models.CharField(max_length=11, unique=True)
 
+    @property
+    def addresses(self):
+        return UserAddress.objects.raw('SELECT * FROM user_useraddress WHERE user_id = %s', [self.id])
+
 
 # CREATE TABLE ADDRESSES
 # (
