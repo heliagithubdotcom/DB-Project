@@ -34,3 +34,10 @@ class CategorySerializer(ModelSerializer):
     class Meta:
         model = Category
         fields = '__all__'
+
+
+class StoreProductDeepSerializer(ModelSerializer):
+    class Meta:
+        model = StoreProduct
+        fields = '__all__'
+        depth = 1
